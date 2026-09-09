@@ -1,10 +1,23 @@
 {
+  "variant": "accordion",
   "eyebrow": "Questions",
   "title": "Things people ask first",
   "entries": [
-    { "question": "How quickly can you start?", "answer": "Usually within three to four weeks. Discovery can often begin sooner, since it runs alongside whatever we are finishing." },
-    { "question": "Do you work with existing codebases?", "answer": "Yes, and most of our work is exactly that. We start with an audit so the plan is based on what the code actually does rather than on what the documentation claims." },
-    { "question": "Who owns the work?", "answer": "You do, entirely. Everything lives in your repositories and your accounts from the first commit, and there is nothing to transfer at the end." },
-    { "question": "What happens after launch?", "answer": "Every project includes thirty days of support. After that, teams either take it in-house with the handover documentation or move onto a retained engagement." }
+    {
+      "question": "How quickly can you start?",
+      "answer": "Usually within three to four weeks. Discovery can often begin sooner, since it runs alongside whatever we are finishing."
+    },
+    {
+      "question": "Do you work with existing codebases?",
+      "answer": "Yes, and most of our work is exactly that. We start with an audit so the plan is based on what the code actually does rather than on what the documentation claims."
+    },
+    {
+      "question": "Who owns the work?",
+      "answer": "You do, entirely. Everything lives in your repositories and your accounts from the first commit, and there is nothing to transfer at the end."
+    },
+    {
+      "question": "What happens after launch?",
+      "answer": "Every project includes thirty days of support. After that, teams either take it in-house with the handover documentation or move onto a retained engagement."
+    }
   ]
 }

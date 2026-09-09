@@ -12,6 +12,8 @@
   ],
   "componentDependencies": [
     "app/components/sections/Hero.tsx",
+    "app/components/sections/Approach.tsx",
+    "app/components/sections/FaqSection.tsx",
     "app/content/home.hero.json",
     "app/content/home.approach.json",
     "app/content/home.faq.json",

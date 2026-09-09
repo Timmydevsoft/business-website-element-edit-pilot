@@ -4,7 +4,8 @@ import { Section, SectionHeading } from '~/components/sections/Section';
 import { ServiceGrid } from '~/components/sections/ServiceGrid';
 import { PostList } from '~/components/sections/PostList';
 import { CallToAction } from '~/components/sections/CallToAction';
-import { Faq } from '~/components/sections/Faq';
+import { FaqSection } from '~/components/sections/FaqSection';
+import { Approach } from '~/components/sections/Approach';
 import { posts, services } from '~/lib/content';
 import { seo } from '~/lib/seo';
 import { site } from '~/config/site';
@@ -22,6 +23,16 @@ import approach from '~/content/home.approach.json';
 import faq from '~/content/home.faq.json';
 import cta from '~/content/home.cta.json';
 
+/**
+ * The shipped content files carry no `variant` key — only the hero does. The
+ * platform writes one the first time a layout is chosen, so the key is read
+ * without insisting the file already has it; each section then falls back to
+ * its own default.
+ */
+function variantOf(content: object): string | undefined {
+  return (content as { variant?: string }).variant;
+}
+
 export function meta(_: Route.MetaArgs) {
   return seo({
     title: site.name,
@@ -38,6 +49,7 @@ export default function Home() {
           which the applier writes into `site`. Once an edit regenerates this
           section the file carries them and wins. */}
       <Hero
+        variant={hero.variant}
         title={hero.title}
         eyebrow={hero.eyebrow ?? site.tagline}
         description={hero.description ?? site.description}
@@ -54,21 +66,13 @@ export default function Home() {
         <ServiceGrid services={services} />
       </Section>
 
-      <Section tone="muted" data-section="section.approach">
-        <SectionHeading
-          eyebrow={approach.eyebrow}
-          title={approach.title}
-          description={approach.description}
-        />
-        <dl className="mt-12 grid gap-8 sm:grid-cols-3">
-          {approach.items.map((item) => (
-            <div key={item.term}>
-              <dt className="font-heading text-lg font-semibold">{item.term}</dt>
-              <dd className="mt-2 text-muted-foreground text-pretty">{item.detail}</dd>
-            </div>
-          ))}
-        </dl>
-      </Section>
+      <Approach
+        variant={variantOf(approach)}
+        eyebrow={approach.eyebrow}
+        title={approach.title}
+        description={approach.description}
+        items={approach.items}
+      />
 
       <Section>
         <SectionHeading
@@ -79,12 +83,19 @@ export default function Home() {
         <PostList posts={posts.slice(0, 3)} />
       </Section>
 
-      <Section width="narrow" tone="muted" data-section="section.faq">
-        <SectionHeading align="center" eyebrow={faq.eyebrow} title={faq.title} />
-        <Faq entries={faq.entries} />
-      </Section>
+      <FaqSection
+        variant={variantOf(faq)}
+        eyebrow={faq.eyebrow}
+        title={faq.title}
+        entries={faq.entries}
+      />
 
-      <CallToAction title={cta.title} description={cta.description} action={cta.action} />
+      <CallToAction
+        variant={variantOf(cta)}
+        title={cta.title}
+        description={cta.description}
+        action={cta.action}
+      />
     </>
   );
 }

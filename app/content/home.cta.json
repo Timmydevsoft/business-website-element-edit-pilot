@@ -1,5 +1,9 @@
 {
+  "variant": "banner",
   "title": "Have a project in mind?",
   "description": "Tell us what you are trying to build and we will tell you honestly whether we are the right studio for it.",
-  "action": { "label": "Start a conversation", "to": "/contact" }
+  "action": {
+    "label": "Start a conversation",
+    "to": "/contact"
+  }
 }

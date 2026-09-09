@@ -1,5 +1,5 @@
 {
-  "variant": "centered",
+  "variant": "left",
   "title": "Design and engineering for businesses that need the work to actually ship",
   "primaryAction": {
     "label": "Start a project",
@@ -9,6 +9,6 @@
     "label": "See our services",
     "to": "/services"
   },
-  "eyebrow": null,
-  "description": null
+  "eyebrow": "Northwind Structural",
+  "description": "Structural design, assessment and remediation for commercial developers who need the work to hold up."
 }
