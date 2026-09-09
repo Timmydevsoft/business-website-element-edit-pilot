@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "templateSource": "business-website",
-  "templateVersion": "1.4.0",
+  "templateVersion": "1.5.0",
   "framework": "react-router-7",
   "runtime": {
     "packageManager": "npm",
@@ -281,7 +281,7 @@
         {
           "id": "steps",
           "label": "Numbered steps",
-          "description": "Centred heading over numbered cards. Right when the points really are a sequence — a process, a set of stages, a first-then-next — and wrong when their order does not matter, because the numbers will imply one anyway. The most visually busy of the three."
+          "description": "Centred heading over numbered cards. Right when the points really are a sequence \u2014 a process, a set of stages, a first-then-next \u2014 and wrong when their order does not matter, because the numbers will imply one anyway. The most visually busy of the three."
         }
       ],
       "fields": [
@@ -393,7 +393,7 @@
         {
           "id": "open",
           "label": "All answers showing",
-          "description": "Every answer visible at once in two columns, with nothing to click. Right when there are only a few short questions, or when the answers are the reassurance the visitor came for and hiding them costs more than the height. Avoid with long answers or more than about six questions — it makes the section very tall."
+          "description": "Every answer visible at once in two columns, with nothing to click. Right when there are only a few short questions, or when the answers are the reassurance the visitor came for and hiding them costs more than the height. Avoid with long answers or more than about six questions \u2014 it makes the section very tall."
         }
       ],
       "fields": [
@@ -462,7 +462,7 @@
         {
           "id": "panel",
           "label": "Inset panel",
-          "description": "A bordered, softly tinted card inset on the normal page background instead of a dark full-width block. Right when the dark band is too loud — a quieter page, or one that already ends on something strong — and when this call to action repeats on many pages."
+          "description": "A bordered, softly tinted card inset on the normal page background instead of a dark full-width block. Right when the dark band is too loud \u2014 a quieter page, or one that already ends on something strong \u2014 and when this call to action repeats on many pages."
         }
       ],
       "fields": [

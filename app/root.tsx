@@ -16,6 +16,7 @@ import { JsonLd } from '~/components/seo/JsonLd';
 import { organizationSchema } from '~/lib/seo';
 import { site } from '~/config/site';
 import { THEME_STORAGE_KEY } from '~/components/site/ThemeToggle';
+import { AnnotationBridge } from '~/components/site/AnnotationBridge';
 import './app.css';
 
 export const links: Route.LinksFunction = () => [
@@ -55,6 +56,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Footer />
         <ScrollRestoration />
         <Scripts />
+        {/* Inert unless the builder enables it, so a published site carries a
+            script that never runs and never listens. */}
+        <AnnotationBridge />
       </body>
     </html>
   );
