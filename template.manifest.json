@@ -62,6 +62,33 @@
         "UPDATE_CONTENT",
         "UPDATE_ASSET"
       ],
+      "selector": "[data-section=\"site.brand\"]",
+      "elements": [
+        {
+          "id": "brand.logo",
+          "label": "Logo",
+          "type": "image",
+          "bindings": { "src": "logoPath" }
+        },
+        {
+          "id": "brand.mark",
+          "label": "Brand mark",
+          "type": "icon",
+          "bindings": { "text": "nameParts.lead" }
+        },
+        {
+          "id": "brand.name-lead",
+          "label": "Business name, first word",
+          "type": "text",
+          "bindings": { "text": "nameParts.lead" }
+        },
+        {
+          "id": "brand.name-accent",
+          "label": "Business name, second word",
+          "type": "text",
+          "bindings": { "text": "nameParts.accent" }
+        }
+      ],
       "fields": [
         {
           "path": "name",
@@ -209,6 +236,55 @@
         }
       ],
       "directManipulation": { "textSize": { "path": "appearance.textSize" }, "spacing": { "path": "appearance.spacing" }, "alignment": { "path": "appearance.alignment" }, "background": { "path": "appearance.background" }, "textColor": { "path": "appearance.textColor" }, "visibility": { "path": "appearance.visible" } },
+      "elements": [
+        {
+          "id": "hero.container",
+          "label": "Hero container",
+          "type": "container",
+          "controls": {
+            "textSize": "appearance.textSize",
+            "spacing": "appearance.spacing",
+            "alignment": "appearance.alignment",
+            "background": "appearance.background",
+            "textColor": "appearance.textColor",
+            "visibility": "appearance.visible"
+          }
+        },
+        {
+          "id": "hero.eyebrow",
+          "label": "Eyebrow",
+          "type": "text",
+          "bindings": { "text": "eyebrow" },
+          "controls": { "visibility": "appearance.eyebrowVisible" }
+        },
+        {
+          "id": "hero.heading",
+          "label": "Hero heading",
+          "type": "text",
+          "bindings": { "text": "title" },
+          "controls": { "textSize": "appearance.textSize" }
+        },
+        {
+          "id": "hero.description",
+          "label": "Hero description",
+          "type": "text",
+          "bindings": { "text": "description" }
+        },
+        {
+          "id": "hero.primary-action",
+          "label": "Primary button",
+          "type": "button",
+          "bindings": { "text": "primaryAction.label", "href": "primaryAction.to" },
+          "controls": { "visibility": "appearance.primaryActionVisible" }
+        },
+        {
+          "id": "hero.secondary-action",
+          "label": "Secondary button",
+          "type": "button",
+          "bindings": { "text": "secondaryAction.label", "href": "secondaryAction.to" },
+          "controls": { "visibility": "appearance.secondaryActionVisible" }
+        }
+      ],
       "fields": [
         { "path": "appearance.textSize", "label": "Heading size", "type": "select", "options": ["text-3xl", "text-4xl", "text-5xl", "text-6xl"], "required": true, "generative": false },
         { "path": "appearance.spacing", "label": "Vertical spacing", "type": "select", "options": ["py-12", "py-16", "py-20", "py-24", "py-32"], "required": true, "generative": false },
@@ -216,6 +292,9 @@
         { "path": "appearance.background", "label": "Background", "type": "select", "options": ["bg-background", "bg-card", "bg-muted", "bg-accent", "bg-primary"], "required": true, "generative": false },
         { "path": "appearance.textColor", "label": "Text colour", "type": "select", "options": ["text-foreground", "text-muted-foreground", "text-primary-foreground"], "required": true, "generative": false },
         { "path": "appearance.visible", "label": "Visible", "type": "boolean", "required": true, "generative": false },
+        { "path": "appearance.eyebrowVisible", "label": "Eyebrow visible", "type": "boolean", "required": true, "generative": false },
+        { "path": "appearance.primaryActionVisible", "label": "Primary button visible", "type": "boolean", "required": true, "generative": false },
+        { "path": "appearance.secondaryActionVisible", "label": "Secondary button visible", "type": "boolean", "required": true, "generative": false },
         {
           "path": "eyebrow",
           "label": "Eyebrow",

@@ -1,6 +1,6 @@
 {
   "variant": "left",
-  "appearance": { "textSize": "text-5xl", "spacing": "py-24", "alignment": "text-left", "background": "bg-background", "textColor": "text-foreground", "visible": true },
+  "appearance": { "textSize": "text-5xl", "spacing": "py-24", "alignment": "text-left", "background": "bg-background", "textColor": "text-foreground", "visible": true, "eyebrowVisible": true, "primaryActionVisible": true, "secondaryActionVisible": true },
   "title": "Design and engineering for businesses that need the work to actually ship",
   "primaryAction": {
     "label": "Start a project",

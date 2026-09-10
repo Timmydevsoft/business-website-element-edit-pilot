@@ -40,15 +40,34 @@ const BRIDGE = `(function(){
     return target && target.closest ? target.closest('[data-section]') : null;
   }
 
-  function describe(el){
-    var r = el.getBoundingClientRect();
-    return {
-      id: el.getAttribute('data-section'),
+  function targetAt(target){
+    var section = sectionAt(target);
+    if (!section) return null;
+    var element = target && target.closest ? target.closest('[data-edit-id]') : null;
+    // An edit marker is valid only inside the section that owns the click.
+    if (element && !section.contains(element)) element = null;
+    return { section: section, element: element };
+  }
+
+  function describe(target){
+    var section = target.section;
+    var element = target.element;
+    var highlighted = element || section;
+    var r = highlighted.getBoundingClientRect();
+    var description = {
+      id: section.getAttribute('data-section'),
+      sectionId: section.getAttribute('data-section'),
       rect: { x: Math.round(r.x), y: Math.round(r.y), width: Math.round(r.width), height: Math.round(r.height) },
       // A short sample so the builder can show what was pointed at without
       // shipping the whole section back on every hover.
-      text: (el.innerText || '').trim().slice(0, 120)
+      text: (highlighted.innerText || '').trim().slice(0, 120)
     };
+    if (element) {
+      description.elementId = element.getAttribute('data-edit-id');
+      description.elementType = element.getAttribute('data-edit-type') || 'element';
+      description.elementLabel = element.getAttribute('data-edit-label') || description.elementId;
+    }
+    return description;
   }
 
   function send(type, payload){
@@ -58,10 +77,10 @@ const BRIDGE = `(function(){
 
   function onMove(e){
     if (!enabled) return;
-    var el = sectionAt(e.target);
+    var target = targetAt(e.target);
     var b = outline();
-    if (!el) { b.style.display = 'none'; return; }
-    var r = el.getBoundingClientRect();
+    if (!target) { b.style.display = 'none'; return; }
+    var r = (target.element || target.section).getBoundingClientRect();
     b.style.display = 'block';
     b.style.left = r.left + 'px';
     b.style.top = r.top + 'px';
@@ -71,13 +90,13 @@ const BRIDGE = `(function(){
 
   function onClick(e){
     if (!enabled) return;
-    var el = sectionAt(e.target);
-    if (!el) return;
+    var target = targetAt(e.target);
+    if (!target) return;
     // The click is for choosing a section, not for following a link out of the
     // page the user is annotating.
     e.preventDefault();
     e.stopPropagation();
-    send('ion:section:click', describe(el));
+    send('ion:section:click', describe(target));
   }
 
   function onLeave(){ if (box) box.style.display = 'none'; }
@@ -92,7 +111,7 @@ const BRIDGE = `(function(){
       enabled = true;
       document.documentElement.style.cursor = 'crosshair';
       send('ion:sections', { sections: Array.prototype.map.call(
-        document.querySelectorAll('[data-section]'), describe) });
+        document.querySelectorAll('[data-section]'), function(el){ return describe({ section: el, element: null }); }) });
     } else if (data.type === 'ion:annotate:disable') {
       enabled = false;
       document.documentElement.style.cursor = '';

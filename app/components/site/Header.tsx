@@ -11,20 +11,44 @@ import { ThemeToggle } from '~/components/site/ThemeToggle';
 
 function Wordmark() {
   return (
-    <Link to="/" className="flex items-center gap-2 font-heading text-lg font-semibold tracking-tight">
+    <Link
+      to="/"
+      data-section="site.brand"
+      className="flex items-center gap-2 font-heading text-lg font-semibold tracking-tight"
+    >
       {site.logoPath ? (
-        <img src={site.logoPath} alt="" aria-hidden className="size-7 rounded-md object-contain" />
+        <img
+          src={site.logoPath}
+          alt=""
+          aria-hidden
+          data-edit-id="brand.logo"
+          data-edit-type="image"
+          data-edit-label="Logo"
+          className="size-7 rounded-md object-contain"
+        />
       ) : (
         <span
           aria-hidden
+          data-edit-id="brand.mark"
+          data-edit-type="icon"
+          data-edit-label="Brand mark"
           className="grid size-7 place-items-center rounded-md bg-primary text-primary-foreground text-sm font-bold"
         >
           {site.nameParts.lead.charAt(0)}
         </span>
       )}
       <span>
-        {site.nameParts.lead}
-        <span className="text-muted-foreground"> {site.nameParts.accent}</span>
+        <span data-edit-id="brand.name-lead" data-edit-type="text" data-edit-label="Business name, first word">
+          {site.nameParts.lead}
+        </span>
+        <span
+          data-edit-id="brand.name-accent"
+          data-edit-type="text"
+          data-edit-label="Business name, second word"
+          className="text-muted-foreground"
+        >
+          {' '}{site.nameParts.accent}
+        </span>
       </span>
     </Link>
   );
