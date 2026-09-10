@@ -3,15 +3,18 @@ import { ArrowUpRight } from 'lucide-react';
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card';
 import type { Service } from '~/lib/content';
+import servicesContent from '~/content/services.json';
+import { sectionAppearance, type SectionAppearance } from '~/lib/section-appearance';
 
-export function ServiceGrid({ services }: { services: Service[] }) {
+export function ServiceGrid({ services, appearance = servicesContent.appearance }: { services: Service[]; appearance?: SectionAppearance }) {
+  const styled = sectionAppearance(appearance);
   return (
-    <ul className="mt-12 grid gap-6 sm:grid-cols-2">
+    <ul data-section="content.services" className={`mt-12 grid gap-6 sm:grid-cols-2 ${styled.root} ${styled.body} ${styled.heading}`}>
       {services.map((service) => (
         <li key={service.slug}>
           <Card className="group relative h-full transition-colors hover:border-primary/40">
             <CardHeader>
-              <CardTitle className="font-heading text-xl">
+              <CardTitle className={`font-heading text-xl ${styled.heading}`}>
                 {/* The whole card is the target, but the link stays on the
                     heading so the accessible name is the service name. */}
                 <Link to={`/services/${service.slug}`} className="after:absolute after:inset-0">

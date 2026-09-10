@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "templateSource": "business-website",
-  "templateVersion": "1.5.0",
+  "templateVersion": "1.6.0",
   "framework": "react-router-7",
   "runtime": {
     "packageManager": "npm",
@@ -15,7 +15,8 @@
     "typecheck": "npm run typecheck",
     "build": "npm run build",
     "start": "npm run start",
-    "healthPath": "/api/health"
+    "healthPath": "/api/health",
+    "annotationBridge": "app/components/site/AnnotationBridge.tsx"
   },
   "database": {
     "required": false,
@@ -31,6 +32,7 @@
   "protectedPaths": [
     "app/components/ui",
     "app/lib/utils.ts",
+    "app/lib/section-appearance.ts",
     "app/lib/seo.ts",
     "app/routes.ts",
     "react-router.config.ts",
@@ -38,6 +40,7 @@
     "tsconfig.json",
     "components.json",
     "app/components/sections/Section.tsx",
+    "app/components/site/AnnotationBridge.tsx",
     "app/components/site/ThemeToggle.tsx"
   ],
   "sharedModules": [
@@ -205,7 +208,14 @@
           "description": "A short full-width band with the headline and buttons on one line. Right when the substance of the page is below and the hero should not dominate the screen."
         }
       ],
+      "directManipulation": { "textSize": { "path": "appearance.textSize" }, "spacing": { "path": "appearance.spacing" }, "alignment": { "path": "appearance.alignment" }, "background": { "path": "appearance.background" }, "textColor": { "path": "appearance.textColor" }, "visibility": { "path": "appearance.visible" } },
       "fields": [
+        { "path": "appearance.textSize", "label": "Heading size", "type": "select", "options": ["text-3xl", "text-4xl", "text-5xl", "text-6xl"], "required": true, "generative": false },
+        { "path": "appearance.spacing", "label": "Vertical spacing", "type": "select", "options": ["py-12", "py-16", "py-20", "py-24", "py-32"], "required": true, "generative": false },
+        { "path": "appearance.alignment", "label": "Text alignment", "type": "select", "options": ["text-left", "text-center", "text-right"], "required": true, "generative": false },
+        { "path": "appearance.background", "label": "Background", "type": "select", "options": ["bg-background", "bg-card", "bg-muted", "bg-accent", "bg-primary"], "required": true, "generative": false },
+        { "path": "appearance.textColor", "label": "Text colour", "type": "select", "options": ["text-foreground", "text-muted-foreground", "text-primary-foreground"], "required": true, "generative": false },
+        { "path": "appearance.visible", "label": "Visible", "type": "boolean", "required": true, "generative": false },
         {
           "path": "eyebrow",
           "label": "Eyebrow",
@@ -284,7 +294,14 @@
           "description": "Centred heading over numbered cards. Right when the points really are a sequence \u2014 a process, a set of stages, a first-then-next \u2014 and wrong when their order does not matter, because the numbers will imply one anyway. The most visually busy of the three."
         }
       ],
+      "directManipulation": { "textSize": { "path": "appearance.textSize" }, "spacing": { "path": "appearance.spacing" }, "alignment": { "path": "appearance.alignment" }, "background": { "path": "appearance.background" }, "textColor": { "path": "appearance.textColor" }, "visibility": { "path": "appearance.visible" } },
       "fields": [
+        { "path": "appearance.textSize", "label": "Heading size", "type": "select", "options": ["text-2xl", "text-3xl", "text-4xl"], "required": true, "generative": false },
+        { "path": "appearance.spacing", "label": "Vertical spacing", "type": "select", "options": ["py-12", "py-16", "py-20", "py-24"], "required": true, "generative": false },
+        { "path": "appearance.alignment", "label": "Text alignment", "type": "select", "options": ["text-left", "text-center", "text-right"], "required": true, "generative": false },
+        { "path": "appearance.background", "label": "Background", "type": "select", "options": ["bg-background", "bg-card", "bg-muted", "bg-accent"], "required": true, "generative": false },
+        { "path": "appearance.textColor", "label": "Text colour", "type": "select", "options": ["text-foreground", "text-muted-foreground", "text-primary-foreground"], "required": true, "generative": false },
+        { "path": "appearance.visible", "label": "Visible", "type": "boolean", "required": true, "generative": false },
         {
           "path": "eyebrow",
           "label": "Eyebrow",
@@ -396,7 +413,14 @@
           "description": "Every answer visible at once in two columns, with nothing to click. Right when there are only a few short questions, or when the answers are the reassurance the visitor came for and hiding them costs more than the height. Avoid with long answers or more than about six questions \u2014 it makes the section very tall."
         }
       ],
+      "directManipulation": { "textSize": { "path": "appearance.textSize" }, "spacing": { "path": "appearance.spacing" }, "alignment": { "path": "appearance.alignment" }, "background": { "path": "appearance.background" }, "textColor": { "path": "appearance.textColor" }, "visibility": { "path": "appearance.visible" } },
       "fields": [
+        { "path": "appearance.textSize", "label": "Heading size", "type": "select", "options": ["text-2xl", "text-3xl", "text-4xl"], "required": true, "generative": false },
+        { "path": "appearance.spacing", "label": "Vertical spacing", "type": "select", "options": ["py-12", "py-16", "py-20", "py-24"], "required": true, "generative": false },
+        { "path": "appearance.alignment", "label": "Text alignment", "type": "select", "options": ["text-left", "text-center", "text-right"], "required": true, "generative": false },
+        { "path": "appearance.background", "label": "Background", "type": "select", "options": ["bg-background", "bg-card", "bg-muted", "bg-accent"], "required": true, "generative": false },
+        { "path": "appearance.textColor", "label": "Text colour", "type": "select", "options": ["text-foreground", "text-muted-foreground", "text-primary-foreground"], "required": true, "generative": false },
+        { "path": "appearance.visible", "label": "Visible", "type": "boolean", "required": true, "generative": false },
         {
           "path": "eyebrow",
           "label": "Eyebrow",
@@ -465,7 +489,14 @@
           "description": "A bordered, softly tinted card inset on the normal page background instead of a dark full-width block. Right when the dark band is too loud \u2014 a quieter page, or one that already ends on something strong \u2014 and when this call to action repeats on many pages."
         }
       ],
+      "directManipulation": { "textSize": { "path": "appearance.textSize" }, "spacing": { "path": "appearance.spacing" }, "alignment": { "path": "appearance.alignment" }, "background": { "path": "appearance.background" }, "textColor": { "path": "appearance.textColor" }, "visibility": { "path": "appearance.visible" } },
       "fields": [
+        { "path": "appearance.textSize", "label": "Heading size", "type": "select", "options": ["text-2xl", "text-3xl", "text-4xl"], "required": true, "generative": false },
+        { "path": "appearance.spacing", "label": "Vertical spacing", "type": "select", "options": ["py-12", "py-16", "py-20", "py-24"], "required": true, "generative": false },
+        { "path": "appearance.alignment", "label": "Text alignment", "type": "select", "options": ["text-left", "text-center", "text-right"], "required": true, "generative": false },
+        { "path": "appearance.background", "label": "Background", "type": "select", "options": ["bg-background", "bg-card", "bg-muted", "bg-accent", "bg-primary"], "required": true, "generative": false },
+        { "path": "appearance.textColor", "label": "Text colour", "type": "select", "options": ["text-foreground", "text-muted-foreground", "text-primary-foreground"], "required": true, "generative": false },
+        { "path": "appearance.visible", "label": "Visible", "type": "boolean", "required": true, "generative": false },
         {
           "path": "title",
           "label": "Heading",
@@ -535,15 +566,22 @@
       "id": "content.services",
       "kind": "SECTION",
       "label": "Services",
-      "sourcePath": "app/lib/content.ts",
+      "sourcePath": "app/components/sections/ServiceGrid.tsx",
       "contentPath": "app/content/services.json",
-      "selector": "services",
+      "selector": "[data-section=\"content.services\"]",
       "operations": [
         "UPDATE_CONTENT",
         "REGENERATE_CONTENT",
         "REORDER_SECTIONS"
       ],
+      "directManipulation": { "textSize": { "path": "appearance.textSize" }, "spacing": { "path": "appearance.spacing" }, "alignment": { "path": "appearance.alignment" }, "background": { "path": "appearance.background" }, "textColor": { "path": "appearance.textColor" }, "visibility": { "path": "appearance.visible" } },
       "fields": [
+        { "path": "appearance.textSize", "label": "Text size", "type": "select", "options": ["text-2xl", "text-3xl", "text-4xl"], "required": true, "generative": false },
+        { "path": "appearance.spacing", "label": "Vertical spacing", "type": "select", "options": ["py-8", "py-12", "py-16"], "required": true, "generative": false },
+        { "path": "appearance.alignment", "label": "Text alignment", "type": "select", "options": ["text-left", "text-center", "text-right"], "required": true, "generative": false },
+        { "path": "appearance.background", "label": "Background", "type": "select", "options": ["bg-background", "bg-card", "bg-muted", "bg-accent"], "required": true, "generative": false },
+        { "path": "appearance.textColor", "label": "Text colour", "type": "select", "options": ["text-foreground", "text-muted-foreground", "text-primary-foreground"], "required": true, "generative": false },
+        { "path": "appearance.visible", "label": "Visible", "type": "boolean", "required": true, "generative": false },
         {
           "path": "services",
           "label": "Service",
@@ -643,15 +681,22 @@
       "id": "content.plans",
       "kind": "SECTION",
       "label": "Pricing plans",
-      "sourcePath": "app/lib/content.ts",
+      "sourcePath": "app/components/sections/PricingTable.tsx",
       "contentPath": "app/content/plans.json",
-      "selector": "plans",
+      "selector": "[data-section=\"content.plans\"]",
       "operations": [
         "UPDATE_CONTENT",
         "REGENERATE_CONTENT",
         "REORDER_SECTIONS"
       ],
+      "directManipulation": { "textSize": { "path": "appearance.textSize" }, "spacing": { "path": "appearance.spacing" }, "alignment": { "path": "appearance.alignment" }, "background": { "path": "appearance.background" }, "textColor": { "path": "appearance.textColor" }, "visibility": { "path": "appearance.visible" } },
       "fields": [
+        { "path": "appearance.textSize", "label": "Text size", "type": "select", "options": ["text-2xl", "text-3xl", "text-4xl"], "required": true, "generative": false },
+        { "path": "appearance.spacing", "label": "Vertical spacing", "type": "select", "options": ["py-8", "py-12", "py-16"], "required": true, "generative": false },
+        { "path": "appearance.alignment", "label": "Text alignment", "type": "select", "options": ["text-left", "text-center", "text-right"], "required": true, "generative": false },
+        { "path": "appearance.background", "label": "Background", "type": "select", "options": ["bg-background", "bg-card", "bg-muted", "bg-accent"], "required": true, "generative": false },
+        { "path": "appearance.textColor", "label": "Text colour", "type": "select", "options": ["text-foreground", "text-muted-foreground", "text-primary-foreground"], "required": true, "generative": false },
+        { "path": "appearance.visible", "label": "Visible", "type": "boolean", "required": true, "generative": false },
         {
           "path": "plans",
           "label": "Plan",

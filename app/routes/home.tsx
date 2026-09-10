@@ -55,6 +55,7 @@ export default function Home() {
         description={hero.description ?? site.description}
         primaryAction={hero.primaryAction}
         secondaryAction={hero.secondaryAction}
+        appearance={hero.appearance}
       />
 
       <Section>
@@ -72,6 +73,7 @@ export default function Home() {
         title={approach.title}
         description={approach.description}
         items={approach.items}
+        appearance={approach.appearance}
       />
 
       <Section>
@@ -88,6 +90,7 @@ export default function Home() {
         eyebrow={faq.eyebrow}
         title={faq.title}
         entries={faq.entries}
+        appearance={faq.appearance}
       />
 
       <CallToAction
@@ -95,6 +98,7 @@ export default function Home() {
         title={cta.title}
         description={cta.description}
         action={cta.action}
+        appearance={cta.appearance}
       />
     </>
   );

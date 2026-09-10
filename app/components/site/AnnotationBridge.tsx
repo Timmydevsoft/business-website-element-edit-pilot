@@ -21,6 +21,8 @@
 const BRIDGE = `(function(){
   var enabled = false;
   var parentOrigin = null;
+  try { parentOrigin = new URL(document.referrer).origin; } catch (_) { return; }
+  if (!parentOrigin || parentOrigin === 'null' || window.parent === window) return;
   var box = null;
 
   function outline(){
@@ -82,12 +84,11 @@ const BRIDGE = `(function(){
 
   window.addEventListener('message', function(event){
     // Only this frame's embedder, and only ever replied to at its own origin.
-    if (event.source !== window.parent) return;
+    if (event.source !== window.parent || event.origin !== parentOrigin) return;
     var data = event.data;
     if (!data || typeof data !== 'object') return;
 
     if (data.type === 'ion:annotate:enable') {
-      parentOrigin = event.origin;
       enabled = true;
       document.documentElement.style.cursor = 'crosshair';
       send('ion:sections', { sections: Array.prototype.map.call(
@@ -100,7 +101,6 @@ const BRIDGE = `(function(){
       // How the builder learns this template can be annotated at all. A
       // template without this script simply never answers, and the builder
       // falls back to its section list.
-      parentOrigin = event.origin;
       send('ion:pong', { sections: Array.prototype.map.call(
         document.querySelectorAll('[data-section]'), function(el){ return el.getAttribute('data-section'); }) });
     }

@@ -1,5 +1,6 @@
 {
   "variant": "banner",
+  "appearance": { "textSize": "text-3xl", "spacing": "py-16", "alignment": "text-left", "background": "bg-primary", "textColor": "text-primary-foreground", "visible": true },
   "title": "Have a project in mind?",
   "description": "Tell us what you are trying to build and we will tell you honestly whether we are the right studio for it.",
   "action": {

@@ -1,5 +1,6 @@
 {
   "variant": "accordion",
+  "appearance": { "textSize": "text-3xl", "spacing": "py-20", "alignment": "text-center", "background": "bg-muted", "textColor": "text-foreground", "visible": true },
   "eyebrow": "Questions",
   "title": "Things people ask first",
   "entries": [

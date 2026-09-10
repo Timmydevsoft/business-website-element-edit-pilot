@@ -12,6 +12,7 @@ import { cn } from '~/lib/utils';
 export function Section({
   children,
   className,
+  rootClassName,
   width = 'default',
   tone = 'default',
   as: Tag = 'section',
@@ -22,6 +23,7 @@ export function Section({
 }: {
   children: ReactNode;
   className?: string;
+  rootClassName?: string;
   width?: 'default' | 'narrow' | 'wide';
   tone?: 'default' | 'muted';
   as?: 'section' | 'div' | 'article';
@@ -30,7 +32,7 @@ export function Section({
   return (
     <Tag
       data-section={dataSection}
-      className={cn(tone === 'muted' && 'bg-muted/40', 'border-b last:border-b-0')}
+      className={cn(tone === 'muted' && 'bg-muted/40', 'border-b last:border-b-0', rootClassName)}
     >
       <div
         className={cn(
@@ -53,12 +55,14 @@ export function SectionHeading({
   description,
   align = 'left',
   className,
+  headingClassName,
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
   align?: 'left' | 'center';
   className?: string;
+  headingClassName?: string;
 }) {
   return (
     <div
@@ -71,7 +75,7 @@ export function SectionHeading({
       {eyebrow ? (
         <p className="text-sm font-semibold uppercase tracking-wider text-primary">{eyebrow}</p>
       ) : null}
-      <h2 className="font-heading text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+      <h2 className={cn('font-heading text-3xl font-semibold tracking-tight text-balance sm:text-4xl', headingClassName)}>
         {title}
       </h2>
       {description ? (

@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader } from '~/components/ui/card';
 import { Section, SectionHeading } from '~/components/sections/Section';
+import { sectionAppearance, type SectionAppearance } from '~/lib/section-appearance';
 
 /**
  * The "how we work" section, in three layouts.
@@ -22,14 +23,16 @@ interface ApproachProps {
   title: string;
   description?: string;
   items: ApproachItem[];
+  appearance?: SectionAppearance;
 }
 
-export function Approach({ variant = 'columns', eyebrow, title, description, items }: ApproachProps) {
+export function Approach({ variant = 'columns', eyebrow, title, description, items, appearance }: ApproachProps) {
+  const styled = sectionAppearance(appearance);
   if (variant === 'aside') {
     return (
-      <Section tone="muted" data-section="section.approach">
+      <Section tone="muted" data-section="section.approach" rootClassName={styled.root} className={styled.body}>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,20rem)_1fr] lg:gap-16">
-          <SectionHeading eyebrow={eyebrow} title={title} description={description} />
+          <SectionHeading eyebrow={eyebrow} title={title} description={description} headingClassName={styled.heading} />
           {/* Rules between the rows rather than around each one: the points
               read as one continuous argument instead of separate boxes. */}
           <dl className="divide-y">
@@ -47,8 +50,8 @@ export function Approach({ variant = 'columns', eyebrow, title, description, ite
 
   if (variant === 'steps') {
     return (
-      <Section tone="muted" data-section="section.approach">
-        <SectionHeading align="center" eyebrow={eyebrow} title={title} description={description} />
+      <Section tone="muted" data-section="section.approach" rootClassName={styled.root} className={styled.body}>
+        <SectionHeading align="center" eyebrow={eyebrow} title={title} description={description} headingClassName={styled.heading} />
         {/* An ordered list, not a description list: this layout asserts that
             the points happen in sequence, which is the whole reason to number
             them. */}
@@ -74,8 +77,8 @@ export function Approach({ variant = 'columns', eyebrow, title, description, ite
   }
 
   return (
-    <Section tone="muted" data-section="section.approach">
-      <SectionHeading eyebrow={eyebrow} title={title} description={description} />
+    <Section tone="muted" data-section="section.approach" rootClassName={styled.root} className={styled.body}>
+      <SectionHeading eyebrow={eyebrow} title={title} description={description} headingClassName={styled.heading} />
       <dl className="mt-12 grid gap-8 sm:grid-cols-3">
         {items.map((item) => (
           <div key={item.term}>

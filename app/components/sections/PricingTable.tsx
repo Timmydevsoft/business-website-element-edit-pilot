@@ -6,16 +6,19 @@ import { Button } from '~/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '~/components/ui/card';
 import { cn } from '~/lib/utils';
 import type { Plan } from '~/lib/content';
+import plansContent from '~/content/plans.json';
+import { sectionAppearance, type SectionAppearance } from '~/lib/section-appearance';
 
-export function PricingTable({ plans }: { plans: Plan[] }) {
+export function PricingTable({ plans, appearance = plansContent.appearance }: { plans: Plan[]; appearance?: SectionAppearance }) {
+  const styled = sectionAppearance(appearance);
   return (
-    <ul className="mt-12 grid items-start gap-6 lg:grid-cols-3">
+    <ul data-section="content.plans" className={`mt-12 grid items-start gap-6 lg:grid-cols-3 ${styled.root} ${styled.body} ${styled.heading}`}>
       {plans.map((plan) => (
         <li key={plan.name}>
           <Card className={cn('h-full', plan.highlighted && 'border-primary shadow-lg')}>
             <CardHeader>
               <div className="flex items-center justify-between gap-3">
-                <CardTitle className="font-heading text-xl">{plan.name}</CardTitle>
+                <CardTitle className={`font-heading text-xl ${styled.heading}`}>{plan.name}</CardTitle>
                 {plan.highlighted ? <Badge>Most chosen</Badge> : null}
               </div>
               <CardDescription className="text-base">{plan.summary}</CardDescription>

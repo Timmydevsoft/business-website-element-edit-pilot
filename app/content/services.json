@@ -1,4 +1,5 @@
 {
+  "appearance": { "textSize": "text-3xl", "spacing": "py-12", "alignment": "text-left", "background": "bg-background", "textColor": "text-foreground", "visible": true },
   "services": [
     {
       "slug": "product-design",

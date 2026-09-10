@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 
 import { Badge } from '~/components/ui/badge';
 import { Button } from '~/components/ui/button';
+import { sectionAppearance, type SectionAppearance } from '~/lib/section-appearance';
 
 /**
  * The hero, in four layouts.
@@ -31,6 +32,7 @@ interface HeroProps {
   description?: string;
   primaryAction: Action;
   secondaryAction?: Action;
+  appearance?: SectionAppearance;
 }
 
 function Actions({
@@ -68,19 +70,21 @@ export function Hero({
   description,
   primaryAction,
   secondaryAction,
+  appearance,
 }: HeroProps) {
   const shell = 'border-b bg-gradient-to-b from-accent/60 to-background';
+  const styled = sectionAppearance(appearance);
 
   if (variant === 'centered') {
     return (
-      <section data-section="section.hero" className={shell}>
-        <div className="mx-auto max-w-6xl px-6 py-24 text-center sm:py-32">
+      <section data-section="section.hero" className={`${shell} ${styled.root}`}>
+        <div className={`mx-auto max-w-6xl px-6 py-24 text-center sm:py-32 ${styled.body}`}>
           <div className="mx-auto max-w-3xl">
             {eyebrow ? <Badge variant="secondary" className="mb-6">{eyebrow}</Badge> : null}
             {/* One h1 per page, and it is here. Every other section heading is
                 an h2, which keeps the document outline correct for crawlers and
                 screen readers alike. */}
-            <h1 className="font-heading text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
+            <h1 className={`font-heading text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl ${styled.heading}`}>
               {title}
             </h1>
             {description ? (
@@ -97,11 +101,11 @@ export function Hero({
 
   if (variant === 'split') {
     return (
-      <section data-section="section.hero" className={shell}>
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-24 sm:py-32 lg:grid-cols-2 lg:items-center lg:gap-16">
+      <section data-section="section.hero" className={`${shell} ${styled.root}`}>
+        <div className={`mx-auto grid max-w-6xl gap-10 px-6 py-24 sm:py-32 lg:grid-cols-2 lg:items-center lg:gap-16 ${styled.body}`}>
           <div>
             {eyebrow ? <Badge variant="secondary" className="mb-6">{eyebrow}</Badge> : null}
-            <h1 className="font-heading text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+            <h1 className={`font-heading text-4xl font-semibold tracking-tight text-balance sm:text-5xl ${styled.heading}`}>
               {title}
             </h1>
           </div>
@@ -120,13 +124,13 @@ export function Hero({
 
   if (variant === 'banner') {
     return (
-      <section data-section="section.hero" className="border-b bg-accent/40">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-12 lg:flex-row lg:items-center lg:justify-between lg:py-14">
+      <section data-section="section.hero" className={`border-b bg-accent/40 ${styled.root}`}>
+        <div className={`mx-auto flex max-w-6xl flex-col gap-6 px-6 py-12 lg:flex-row lg:items-center lg:justify-between lg:py-14 ${styled.body}`}>
           <div className="max-w-2xl">
             {eyebrow ? (
               <p className="mb-2 text-sm font-medium tracking-wide text-muted-foreground uppercase">{eyebrow}</p>
             ) : null}
-            <h1 className="font-heading text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
+            <h1 className={`font-heading text-2xl font-semibold tracking-tight text-balance sm:text-3xl ${styled.heading}`}>
               {title}
             </h1>
           </div>
@@ -137,11 +141,11 @@ export function Hero({
   }
 
   return (
-    <section data-section="section.hero" className={shell}>
-      <div className="mx-auto max-w-6xl px-6 py-24 sm:py-32">
+    <section data-section="section.hero" className={`${shell} ${styled.root}`}>
+      <div className={`mx-auto max-w-6xl px-6 py-24 sm:py-32 ${styled.body}`}>
         <div className="max-w-3xl">
           {eyebrow ? <Badge variant="secondary" className="mb-6">{eyebrow}</Badge> : null}
-          <h1 className="font-heading text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
+          <h1 className={`font-heading text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl ${styled.heading}`}>
             {title}
           </h1>
           {description ? (

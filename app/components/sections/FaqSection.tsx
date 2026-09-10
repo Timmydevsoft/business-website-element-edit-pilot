@@ -1,5 +1,6 @@
 import { Faq, FaqJsonLd, type FaqEntry } from '~/components/sections/Faq';
 import { Section, SectionHeading } from '~/components/sections/Section';
+import { sectionAppearance, type SectionAppearance } from '~/lib/section-appearance';
 
 /**
  * The homepage FAQ, in three layouts.
@@ -19,14 +20,16 @@ interface FaqSectionProps {
   eyebrow?: string;
   title: string;
   entries: FaqEntry[];
+  appearance?: SectionAppearance;
 }
 
-export function FaqSection({ variant = 'accordion', eyebrow, title, entries }: FaqSectionProps) {
+export function FaqSection({ variant = 'accordion', eyebrow, title, entries, appearance }: FaqSectionProps) {
+  const styled = sectionAppearance(appearance);
   if (variant === 'split') {
     return (
-      <Section tone="muted" data-section="section.faq">
+      <Section tone="muted" data-section="section.faq" rootClassName={styled.root} className={styled.body}>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,20rem)_1fr] lg:gap-16">
-          <SectionHeading eyebrow={eyebrow} title={title} />
+          <SectionHeading eyebrow={eyebrow} title={title} headingClassName={styled.heading} />
           <Faq entries={entries} className="mt-0" />
         </div>
       </Section>
@@ -35,9 +38,9 @@ export function FaqSection({ variant = 'accordion', eyebrow, title, entries }: F
 
   if (variant === 'open') {
     return (
-      <Section tone="muted" data-section="section.faq">
+      <Section tone="muted" data-section="section.faq" rootClassName={styled.root} className={styled.body}>
         <FaqJsonLd entries={entries} />
-        <SectionHeading eyebrow={eyebrow} title={title} />
+        <SectionHeading eyebrow={eyebrow} title={title} headingClassName={styled.heading} />
         <dl className="mt-12 grid gap-x-12 gap-y-8 sm:grid-cols-2">
           {entries.map((entry) => (
             <div key={entry.question}>
@@ -51,8 +54,8 @@ export function FaqSection({ variant = 'accordion', eyebrow, title, entries }: F
   }
 
   return (
-    <Section width="narrow" tone="muted" data-section="section.faq">
-      <SectionHeading align="center" eyebrow={eyebrow} title={title} />
+    <Section width="narrow" tone="muted" data-section="section.faq" rootClassName={styled.root} className={styled.body}>
+      <SectionHeading align="center" eyebrow={eyebrow} title={title} headingClassName={styled.heading} />
       <Faq entries={entries} />
     </Section>
   );

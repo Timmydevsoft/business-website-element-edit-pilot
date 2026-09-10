@@ -1,5 +1,6 @@
 {
   "variant": "columns",
+  "appearance": { "textSize": "text-3xl", "spacing": "py-20", "alignment": "text-left", "background": "bg-muted", "textColor": "text-foreground", "visible": true },
   "eyebrow": "How we work",
   "title": "Small team, short feedback loops, no surprises",
   "description": "You work with the people doing the work. There is no account layer between you and the team, and nothing is presented for the first time at the end.",
