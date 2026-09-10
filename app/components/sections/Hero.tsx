@@ -75,7 +75,10 @@ function Actions({
             data-edit-id="hero.secondary-action"
             data-edit-type="button"
             data-edit-label="Secondary button"
-            className={secondaryActionVisible ? undefined : 'hidden'}
+            // The hero can switch to a dark semantic background. The outline
+            // button paints its own light surface, so it must also own its text
+            // colour instead of inheriting the hero's foreground.
+            className={`text-foreground ${secondaryActionVisible ? '' : 'hidden'}`}
           >
             {secondaryAction.label}
           </Link>

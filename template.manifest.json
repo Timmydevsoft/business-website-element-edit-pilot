@@ -1,7 +1,7 @@
 {
   "schemaVersion": 3,
   "templateSource": "business-website",
-  "templateVersion": "1.6.0",
+  "templateVersion": "1.6.1",
   "framework": "react-router-7",
   "runtime": {
     "packageManager": "npm",
